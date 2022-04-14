@@ -2,12 +2,12 @@ package ua.lviv.iot.ship;
 
 public class Hovercraft extends HydrofoilShip{
     private double price;
-    private int crew;
+    private int people;
 
     protected Hovercraft(){}
     public Hovercraft(double price, int people){
         this.price = price;
-        this.crew = people;
+        this.people = people;
     }
 
     @Override
@@ -17,10 +17,10 @@ public class Hovercraft extends HydrofoilShip{
 
     @Override
     public int getMaxNumberPeople() {
-        return crew;
+        return people;
     }
     @Override
     public String toString() {
-        return "Hovercraft: price = " + price + "; max people = " + crew;
+        return "Hovercraft: price = " + price + "; max people = " + people;
     }
 }

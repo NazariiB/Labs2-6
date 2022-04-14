@@ -2,12 +2,12 @@ package ua.lviv.iot.ship;
 
 public class MotorShip extends RiverTram{
     private double price;
-    private int crew;
+    private int people;
 
     protected MotorShip(){}
     public MotorShip(double price, int people){
         this.price = price;
-        this.crew = people;
+        this.people = people;
     }
 
     @Override
@@ -17,10 +17,10 @@ public class MotorShip extends RiverTram{
 
     @Override
     public int getMaxNumberPeople() {
-        return crew;
+        return people;
     }
     @Override
     public String toString() {
-        return "MotorShip: price = " + price + "; max people = " + crew;
+        return "MotorShip: price = " + price + "; max people = " + people;
     }
 }
