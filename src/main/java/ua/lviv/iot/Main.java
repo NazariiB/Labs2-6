@@ -40,5 +40,8 @@ public class Main {
         System.out.println("\nFind ships with price 100:\n" + manager.findSortByPrice(100, SortType.BIGTOLOW));
 
         System.out.println("\nFind ships with people 20: \n" + manager.findSortByMaxPeople(20, SortType.LOWTOBIG));
+
+        ShipWriter shipWriter = new ShipWriter();
+        shipWriter.writeToFile(manager.getShips());
     }
 }

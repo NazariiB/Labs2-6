@@ -9,7 +9,10 @@ public class MotorShip extends RiverTram{
         this.price = price;
         this.people = people;
     }
-
+    @Override
+    public String toCSV() {
+        return price + "," + people;
+    }
     @Override
     public double getPriceForPeople() {
         return price;

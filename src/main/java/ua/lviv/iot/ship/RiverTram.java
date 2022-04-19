@@ -12,6 +12,11 @@ public class RiverTram extends Ferry {
     }
 
     @Override
+    public String toCSV() {
+        return price + "," + people;
+    }
+
+    @Override
     public double getPriceForPeople() {
         return price;
     }
