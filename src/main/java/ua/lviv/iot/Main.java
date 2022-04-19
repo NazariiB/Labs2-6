@@ -4,37 +4,41 @@ package ua.lviv.iot;
 import ua.lviv.iot.ship.*;
 public class Main {
     public static void main(String[] args) {
-        Manager ivan = new Manager("Petro");
+        Manager manager = new Manager("Ivan");
 
         Ship steamMachine = new Steamship(100, 20);
-        ivan.addShip(steamMachine);
+        manager.addShip(steamMachine);
 
         Ship ferry = new Ferry(120, 40);
-        ivan.addShip(ferry);
+        manager.addShip(ferry);
 
         Ship riverTram = new RiverTram(30, 20);
-        ivan.addShip(riverTram);
+        manager.addShip(riverTram);
 
         Ship motorShip = new MotorShip(50, 10);
-        ivan.addShip(motorShip);
+        manager.addShip(motorShip);
 
         Ship hydrofoilShip = new HydrofoilShip(400, 15);
-        ivan.addShip(hydrofoilShip);
+        manager.addShip(hydrofoilShip);
 
         Ship hovercraft = new Hovercraft(500, 17);
-        ivan.addShip(hovercraft);
+        manager.addShip(hovercraft);
 
-        System.out.println("Not sorted list:\n" + ivan);
-        ivan.sortByMaxPeople(true);
-        System.out.println("\nSorted list:\n" + ivan);
+        System.out.println("Not sorted list:\n" + manager);
+        manager.sortByMaxPeople(SortType.BIGTOLOW);
+        System.out.println("\nSorted list:\n" + manager);
 
-        ivan.sortByMaxPeople(false);
-        System.out.println("\nSorted list:\n" + ivan);
+        manager.sortByMaxPeople(SortType.LOWTOBIG);
+        System.out.println("\nSorted list:\n" + manager);
 
-        ivan.sortByPrice(true);
-        System.out.println("\nSorted list:\n" + ivan);
+        manager.sortByPrice(SortType.BIGTOLOW);
+        System.out.println("\nSorted list:\n" + manager);
 
-        ivan.sortByPrice(false);
-        System.out.println("\nSorted list:\n" + ivan);
+        manager.sortByPrice(SortType.LOWTOBIG);
+        System.out.println("\nSorted list:\n" + manager);
+
+        System.out.println("\nFind ships with price 100:\n" + manager.findSortByPrice(100, SortType.BIGTOLOW));
+
+        System.out.println("\nFind ships with people 20: \n" + manager.findSortByMaxPeople(20, SortType.LOWTOBIG));
     }
 }
