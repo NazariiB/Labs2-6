@@ -1,13 +1,12 @@
 package ua.lviv.iot.ship;
 
-public class Hovercraft extends HydrofoilShip{
-    private double price;
-    private int people;
+public class Hovercraft extends HydrofoilShip {
+    private final double price;
+    private final int people;
 
-    protected Hovercraft(){}
-    public Hovercraft(double price, int people){
-        this.price = price;
-        this.people = people;
+    public Hovercraft(final double cost, final int persons) {
+        price = cost;
+        people = persons;
     }
 
     @Override

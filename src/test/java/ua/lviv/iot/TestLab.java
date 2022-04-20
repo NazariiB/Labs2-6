@@ -8,10 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class TestLab {
     private static final Manager manager = new Manager("Ivan");
@@ -26,6 +24,8 @@ public class TestLab {
         manager.addShip(new RiverTram(130, 16));
         manager.addShip(new Steamship(109, 9));
     }
+
+
 
     @Test
     public void testGeneral(){
@@ -44,41 +44,45 @@ public class TestLab {
     @Test
     public void testSorting(){
         manager.sortByPrice(SortType.BIGTOLOW);
-        assertEquals("Manager name:Ivan\n" +
-                "ships = [ RiverTram: price = 130.0; max people = 16 \n" +
-                " Hovercraft: price = 120.0; max people = 12 \n" +
-                " Ferry: price = 110.0; max people = 15 \n" +
-                " Steamship: price = 109.0; max people = 9 \n" +
-                " HydrofoilShip: price = 100.0; max people = 10 \n" +
-                " MotorShip: price = 90.0; max people = 11 ] }", manager.toString());
+        assertEquals("""
+                Manager name:Ivan
+                ships = [ RiverTram: price = 130.0; max people = 16\s
+                 Hovercraft: price = 120.0; max people = 12\s
+                 Ferry: price = 110.0; max people = 15\s
+                 Steamship: price = 109.0; max people = 9\s
+                 HydrofoilShip: price = 100.0; max people = 10\s
+                 MotorShip: price = 90.0; max people = 11 ] }""", manager.toString());
 
         manager.sortByPrice(SortType.LOWTOBIG);
-        assertEquals("Manager name:Ivan\n" +
-                "ships = [ MotorShip: price = 90.0; max people = 11 \n" +
-                " HydrofoilShip: price = 100.0; max people = 10 \n" +
-                " Steamship: price = 109.0; max people = 9 \n" +
-                " Ferry: price = 110.0; max people = 15 \n" +
-                " Hovercraft: price = 120.0; max people = 12 \n" +
-                " RiverTram: price = 130.0; max people = 16 ] }", manager.toString());
+        assertEquals("""
+                Manager name:Ivan
+                ships = [ MotorShip: price = 90.0; max people = 11\s
+                 HydrofoilShip: price = 100.0; max people = 10\s
+                 Steamship: price = 109.0; max people = 9\s
+                 Ferry: price = 110.0; max people = 15\s
+                 Hovercraft: price = 120.0; max people = 12\s
+                 RiverTram: price = 130.0; max people = 16 ] }""", manager.toString());
 
         manager.sortByMaxPeople(SortType.LOWTOBIG);
-        assertEquals("Manager name:Ivan\n" +
-                "ships = [ Steamship: price = 109.0; max people = 9 \n" +
-                " HydrofoilShip: price = 100.0; max people = 10 \n" +
-                " MotorShip: price = 90.0; max people = 11 \n" +
-                " Hovercraft: price = 120.0; max people = 12 \n" +
-                " Ferry: price = 110.0; max people = 15 \n" +
-                " RiverTram: price = 130.0; max people = 16 ] }", manager.toString());
+        assertEquals("""
+                Manager name:Ivan
+                ships = [ Steamship: price = 109.0; max people = 9\s
+                 HydrofoilShip: price = 100.0; max people = 10\s
+                 MotorShip: price = 90.0; max people = 11\s
+                 Hovercraft: price = 120.0; max people = 12\s
+                 Ferry: price = 110.0; max people = 15\s
+                 RiverTram: price = 130.0; max people = 16 ] }""", manager.toString());
 
 
         manager.sortByMaxPeople(SortType.BIGTOLOW);
-        assertEquals("Manager name:Ivan\n" +
-                "ships = [ RiverTram: price = 130.0; max people = 16 \n" +
-                " Ferry: price = 110.0; max people = 15 \n" +
-                " Hovercraft: price = 120.0; max people = 12 \n" +
-                " MotorShip: price = 90.0; max people = 11 \n" +
-                " HydrofoilShip: price = 100.0; max people = 10 \n" +
-                " Steamship: price = 109.0; max people = 9 ] }", manager.toString());
+        assertEquals("""
+                Manager name:Ivan
+                ships = [ RiverTram: price = 130.0; max people = 16\s
+                 Ferry: price = 110.0; max people = 15\s
+                 Hovercraft: price = 120.0; max people = 12\s
+                 MotorShip: price = 90.0; max people = 11\s
+                 HydrofoilShip: price = 100.0; max people = 10\s
+                 Steamship: price = 109.0; max people = 9 ] }""", manager.toString());
 
     }
 
@@ -115,10 +119,16 @@ public class TestLab {
         ShipWriter shipWriter = new ShipWriter();
         shipWriter.writeToFile(manager.getShips());
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/java/ua/lviv/iot/ships"))) {
-            List<String> file = bufferedReader.lines().collect(Collectors.toList());
+            List<String> file = bufferedReader.lines().toList();
             assertEquals(file.toString(), "[price,people, 100.0,10, 120.0,12, 90.0,11, 110.0,15, 130.0,16, 109.0,9]");
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testClearShips(){
+        manager.clearShips();
+        assertEquals(0, manager.getShips().size());
     }
 }

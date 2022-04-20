@@ -1,13 +1,13 @@
 package ua.lviv.iot.ship;
 
-public class HydrofoilShip extends MotorShip{
+public class HydrofoilShip extends MotorShip {
     private double price;
     private int people;
 
-    protected HydrofoilShip(){}
-    public HydrofoilShip(double price, int people){
-        this.price = price;
-        this.people = people;
+    protected HydrofoilShip() { }
+    public HydrofoilShip(final double cost, final int persons) {
+        price = cost;
+        people = persons;
     }
     @Override
     public String toCSV() {

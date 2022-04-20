@@ -4,10 +4,10 @@ public class Ferry extends Steamship {
     private double price;
     private int people;
 
-    protected Ferry(){}
-    public Ferry(double price, int people){
-        this.price = price;
-        this.people = people;
+    protected Ferry() { }
+    public Ferry(final double cost, final int persons) {
+        price = cost;
+        people = persons;
     }
     @Override
     public String toCSV() {

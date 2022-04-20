@@ -4,7 +4,7 @@ package ua.lviv.iot;
 import ua.lviv.iot.ship.*;
 public class Main {
     public static void main(String[] args) {
-        Manager manager = new Manager("Ivan");
+        Manager manager = new Manager("Petro");
 
         Ship steamMachine = new Steamship(100, 20);
         manager.addShip(steamMachine);
@@ -37,9 +37,11 @@ public class Main {
         manager.sortByPrice(SortType.LOWTOBIG);
         System.out.println("\nSorted list:\n" + manager);
 
-        System.out.println("\nFind ships with price 100:\n" + manager.findSortByPrice(100, SortType.BIGTOLOW));
+        System.out.println("\nFind ships with price 100:\n" +
+                manager.findSortByPrice(100, SortType.BIGTOLOW));
 
-        System.out.println("\nFind ships with people 20: \n" + manager.findSortByMaxPeople(20, SortType.LOWTOBIG));
+        System.out.println("\nFind ships with people 20: \n" +
+                manager.findSortByMaxPeople(20, SortType.LOWTOBIG));
 
         ShipWriter shipWriter = new ShipWriter();
         shipWriter.writeToFile(manager.getShips());

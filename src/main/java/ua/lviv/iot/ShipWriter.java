@@ -16,7 +16,7 @@ public class ShipWriter {
                     throw new RuntimeException(e);
                 }
             });
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
