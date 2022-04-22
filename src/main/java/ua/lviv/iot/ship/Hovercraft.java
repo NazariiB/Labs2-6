@@ -14,7 +14,10 @@ public class Hovercraft extends HydrofoilShip{
     public double getPriceForPeople() {
         return price;
     }
-
+    @Override
+    public String toCSV() {
+        return price + "," + people;
+    }
     @Override
     public int getMaxNumberPeople() {
         return people;

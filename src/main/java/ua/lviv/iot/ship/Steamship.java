@@ -21,6 +21,11 @@ public class Steamship implements Ship{
     }
 
     @Override
+    public String toCSV() {
+        return price + "," + people;
+    }
+
+    @Override
     public String toString() {
         return "Steamship: price = " + price + "; max people = " + people;
     }
